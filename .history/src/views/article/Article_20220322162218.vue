@@ -1,0 +1,54 @@
+<template>
+  <b-container class="bv-example-row">
+    <b-row class="mt-2">
+      <b-col cols="10">
+        <div class="home">
+          <div>
+            <h5 class="mt-0 mb-1">
+              {{ post.title }}
+            </h5>
+            <br>
+            <br>
+            <p class="mb-0">
+              {{ post.category_id }}
+            </p>
+            <br>
+          </div>
+        </div>
+
+      </b-col>
+
+      <b-col cols="2">
+        <b-link href="/posts">发布文章</b-link>
+      </b-col>
+
+    </b-row>
+  </b-container>
+
+</template>
+
+<script>
+
+export default {
+  name: 'indexPage',
+  data() {
+    return {
+      post: '',
+    };
+  },
+  created() {
+    this.getapi();
+  },
+  methods: {
+
+    getapi() {
+      console.log(this.$route.params.id);
+      this.id = this.$route.params.id;
+      this.axios.get(`http://localhost:1016/posts/${this.id}`).then((res) => {
+        this.post = res.data.data.post;
+        console.log(res.data.data.post);
+      });
+    },
+  },
+};
+</script>
