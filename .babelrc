@@ -1,3 +1,7 @@
 {
- "compact": false,
+    "env": {
+      "development" : {
+        "compact": false
+      }
+    }
 }
